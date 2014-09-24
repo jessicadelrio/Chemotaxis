@@ -1,10 +1,26 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class Chemotaxis extends PApplet {
+
  //declare bacteria variables here   
 
 Bacteria [] society;
 
 Virus [] invasion;
 //get(x.y)
- void setup()   
+ public void setup()   
  {     //initialize bacteria variables here   
  	size(500,500);
  	
@@ -20,7 +36,7 @@ Virus [] invasion;
  	}
 
  }   
- void draw()   
+ public void draw()   
  {    //move and show the bacteria   
  	background(0,0,0);
  	for(int i = 0; i <society.length;i++){
@@ -81,7 +97,7 @@ Virus [] invasion;
  		mySize1 = 45;
  		mySize2 = 15;
  	}    
- 	void move(){
+ 	public void move(){
  		int number = (int)(Math.random()*4);
  		if(number == 0){
  			myX--;
@@ -96,7 +112,7 @@ Virus [] invasion;
  		
  		 	  
  	} 
- 	void show(){
+ 	public void show(){
 
  		fill(bacteriacolor);
  		ellipse(myX,myY,mySize1,mySize1-20);
@@ -111,7 +127,7 @@ Virus [] invasion;
 		yposition = (int)(Math.random()*401);
 		viruscolor = color(0,0,255);
 	}
-	void move(){
+	public void move(){
 		int randnumber = (int)(Math.random()*4);
 		if(randnumber==0){
 			xposition--;
@@ -122,10 +138,19 @@ Virus [] invasion;
 		}if(randnumber==3){
 			yposition--;
 		}
-	}void show(){
+	}public void show(){
 		fill(viruscolor);
 		triangle(xposition,yposition, xposition+15, yposition-15,xposition-15,yposition-15);
 		//fill(200,0,0);
 		//ellipse(xposition,yposition-5,10,10);
 	}
 	}
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "Chemotaxis" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
+}
